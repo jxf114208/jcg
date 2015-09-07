@@ -4,6 +4,16 @@ jsPlumb.ready(function () {
 	var idIndex = 0;
 	var $container = $("#flowchart-demo");
 	
+	//窗口对象
+	var $window = $(window);
+	//窗口高度
+	var winHeight = $window.height();
+	
+	//左边区域对象
+	var $left= $("#component");
+	//左边区域对象
+	var $right= $("#tabs");
+	
 	var instance = jsPlumb.getInstance({
 		// default drag options
         DragOptions: { cursor: 'pointer', zIndex: 2000 },
@@ -145,7 +155,7 @@ jsPlumb.ready(function () {
     
 	$accordion.accordion({
 		collapsible: true,
-		heightStyle: "fill",
+		//heightStyle: "fill",
 		icons:null
   });
 	
@@ -280,7 +290,7 @@ jsPlumb.ready(function () {
 				if($this.data("type") === "code")
 				{
 					$lbl = $("<b>",{text:"代码编写："});
-					$txt = $("<textarea>",{css:{"margin-top": "10px","width": "230px","height":  $(window).height() - 95 + "px","background-color":"rgb(255, 255, 146)","border-color": "rgb(169, 169, 169)"}});
+					$txt = $("<textarea>",{css:{"margin-top": "10px","width": "230px","height":  winHeight - 95 + "px","background-color":"rgb(255, 255, 146)","border-color": "rgb(169, 169, 169)"}});
 				}else
 				{
 					$lbl = $("<b>",{text:"条件表达式设置："});
@@ -300,7 +310,7 @@ jsPlumb.ready(function () {
 			$(".window.active").removeClass("active");
 			$this.addClass("active");
 			
-			var json = $this.data("json")
+			var json = $this.data("json");
 			//参数
 			$(json.parameters).each(function(i){
 				var $table = $("<table cellspacing=0>").append($("<caption>",{text:"参数" + i,css:{"text-align":"left","font-size":"14px","font-weight":"bolder"}}));
@@ -744,11 +754,6 @@ jsPlumb.ready(function () {
 	
 	
 	/**绑定全局自适应大小事件*/
-	//窗口对象
-	var $window = $(window);
-	//窗口高度
-	var winHeight = $window.height();
-	
 	//table对象
 	var $tbl = $("#tbl");
 	//设置table高度
@@ -756,16 +761,30 @@ jsPlumb.ready(function () {
 	
 	//变量区域对象
 	var $vars = $(".ui-tabs .vars");
+	//设置右边区域的高度
+	$right.height(winHeight - 10);
 	//设置右边变量区域的高度
 	$vars.height(winHeight - 90);
+	//设置画图区域的高度
+	$container.height(winHeight - 10);
+	//设置左边区域的高度
+	$left.height(winHeight - 10);
 	
 	$window.resize(function(e) {
-	  winHeight = $window.height();
-	  $tbl.height(winHeight);
+	  setFrameHeight($window.height());
+  });
+  
+  //设置元素高度
+  function setFrameHeight(height){
+    winHeight = height;
+    $tbl.height(winHeight);
 	  $vars.height(winHeight - 90);
+	  $container.height(winHeight - 10);
+	  $left.height(winHeight - 10);
+	  $right.height(winHeight - 10);
 	  //多行文本框的高度
 	  $(".right textarea").height(winHeight - 95);
-  });
+  }
 	
 	
 	/** =============================================
@@ -782,6 +801,11 @@ jsPlumb.ready(function () {
 //		$(instance.getAllConnections()).each(function(){
 //			console.info(this);
 //		});
+	};
+	
+	//设置元素高度
+	window.setFrameHeight = function(height){
+		setFrameHeight(height);
 	};
 	
 	//清空页面元素信息，包括容器中的元素、属性、全局变量、局部变量

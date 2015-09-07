@@ -139,6 +139,9 @@ path, ._jsPlumb_endpoint {
 	padding: 5px;
 }
 
+#component{
+  overflow-y: auto;
+}
 #component .window{
 	display: inline-block;
 	position: relative;
@@ -207,6 +210,7 @@ table{
 }
 table td{
 	padding: 0;
+	vertical-align: top;
 }
 
 .ui-widget {
@@ -241,6 +245,7 @@ table td{
 .right textarea{
 	width:100%;
 	resize: none;
+	overflow:auto;
 }
 
 /**tab*/

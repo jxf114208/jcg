@@ -261,6 +261,7 @@ jsPlumb.ready(function () {
 				instance.remove(this);
 				$("#tabs-1").empty();
 			});
+			return false;
 		}
 	},".dl");
 	

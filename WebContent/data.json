@@ -1,0 +1,47 @@
+{
+	//全局变量 name--变量名，type--变量类型，val--变量值，comment--注释
+	"globalVars": [
+			{"name":"g_0","type":"int","val":"0","comment":"全局变量0"},
+			{"name":"g_1","type":"char","val":"a","comment":"全局变量1"}
+			//多个...
+		],
+	//局部变量 name--变量名，type--变量数据类型，val--变量值，comment--注释
+	"localVars" : [
+			{"name":"l_0","type":"int","val":"1","comment":"局部变量0"},
+			{"name":"l_1","type":"char","val":"b","comment":"局部变量1"}
+			//多个...
+		],
+	//代码逻辑 原先的JSON数据，封装在这个属性中
+	// 增加一种方法类型
+	// type--“method”，name--方法名， comment--方法的描述, params--参数数组，return--返回对象
+	// parameters： type--参数数据类型，val--参数值，可以为变量名称, name--方法名， comment--注释或说明
+	// returnInfo: type--返回数据类型，var--变量（全局或者局部）
+	"codeLogic": [
+			{
+				"type":"method",
+				"name":"SetLCD3Char",
+				"comment":"测试方法1",
+				"parameters":[
+					{"type":"int","val":"0","name":"参数1","comment":"参数1的注释"}, 
+					{"type":"char","val":"l_1","name":"参数1","comment":"参数1的注释"}
+				],
+				"returnInfo":{
+					"type":"int",
+					"var":"g_0"
+				}
+			},
+			{
+				"type":"method",
+				"name":"SetLCD8Char",
+				"comment":"测试方法1",
+				"parameters":[
+					{"type":"int","val":"0","name":"参数1","comment":"参数1的注释"}, 
+					{"type":"int","val":"l_0","name":"参数1","comment":"参数1的注释"}
+				],
+				"returnInfo":{
+					"type":"void"
+				}
+			},
+			//多个...
+	]
+}

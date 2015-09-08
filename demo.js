@@ -7,7 +7,7 @@ jsPlumb.ready(function () {
 	//窗口对象
 	var $window = $(window);
 	//窗口高度
-	var winHeight = $window.height();
+	var winHeight = $window.height() - 2;
 	
 	//左边区域对象
 	var $left= $("#component");
@@ -705,7 +705,7 @@ jsPlumb.ready(function () {
 		$(jsonData.comps).each(function(){
 			//单个组件对象
 			var comp = this;
-			console.info(this);
+			//console.info(this);
 			
 			//创建div对象
 			var $el = $("<div>", {
@@ -771,7 +771,7 @@ jsPlumb.ready(function () {
 	$left.height(winHeight - 10);
 	
 	$window.resize(function(e) {
-	  setFrameHeight($window.height());
+	  setFrameHeight($window.height() - 2);
   });
   
   //设置元素高度

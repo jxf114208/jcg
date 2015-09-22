@@ -505,7 +505,7 @@ jsPlumb.ready(function () {
 			jsonArray.push(jsonObject);
 		}
 		
-		if(conns.length == 0){
+		if(conns.length === 0){
 			return;
 		}
 		
@@ -639,6 +639,7 @@ jsPlumb.ready(function () {
 			comp.id = $el.attr("id");//id
 			comp.class = $el.attr("class").replace("ui-draggable ui-draggable-handle","");//class值
 			comp.position = $el.position();//坐标
+			comp.bgImg = $el.css("background-image");//style样式
 			comp.data = $.extend({}, $el.data());//data属性
 			delete comp.data.uiDraggable;//移除无用属性
 			comp.data_id = $el.attr("data-id");//data-id值
@@ -708,13 +709,18 @@ jsPlumb.ready(function () {
 			var comp = this;
 			//console.info(this);
 			
+			//style属性
+			var css = comp.position;
+			//赋值背景图片
+			css["background-image"] = comp.bgImg;
+			
 			//创建div对象
 			var $el = $("<div>", {
 				"id": comp.id,
 				"class": comp.class,
 				"data-id": comp.data_id,
 				data: comp.data,
-				css: comp.position,
+				css: css,
 				html: comp.html
 			});
 			
